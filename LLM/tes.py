@@ -16,4 +16,3 @@ with torch.inference_mode():
     )
     
 output = tokenizer.decode(tokens[0], skip_special_tokens=True)
-print(output)

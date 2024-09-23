@@ -1,68 +1,3 @@
-from pip._internal import main as _main
-import importlib
-
-
-name: str = "transformers"
-version: str = "4.44.2"
-try:
-    importlib.import_module(name)
-except ImportError:
-    cli_main(
-        [
-            "install",
-            f"{name}=={version}",
-            "-q",
-            "--disable-pip-version-check",
-            "--no-python-version-warning",
-            "--no-warn-script-location",
-            "--no-warn-conflicts",
-            "--root-user-action",
-            "ignore",
-        ]
-    )
-
-
-name: str = "datasets"
-version: str = "3.0.0"
-try:
-    importlib.import_module(name)
-except ImportError:
-    cli_main(
-        [
-            "install",
-            f"{name}=={version}",
-            "-q",
-            "--disable-pip-version-check",
-            "--no-python-version-warning",
-            "--no-warn-script-location",
-            "--no-warn-conflicts",
-            "--root-user-action",
-            "ignore",
-        ]
-    )
-
-    
-name: str = "torch"
-version: str = "2.4.1"
-try:
-    importlib.import_module(name)
-except ImportError:
-    cli_main(
-        [
-            "install",
-            f"{name}=={version}",
-            "-q",
-            "--disable-pip-version-check",
-            "--no-python-version-warning",
-            "--no-warn-script-location",
-            "--no-warn-conflicts",
-            "--root-user-action",
-            "ignore",
-        ]
-    )
-
-
-
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
 import torch
@@ -95,7 +30,7 @@ print(f"Eval results: {eval_results}")
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = model.to(device)
-input_text = "sex"
+input_text = "What is Geneleteing AI"
 input_data = tokenizer(input_text, return_tensors='pt').to(device)
 outputs = model(**input_data)
 predicted_class_idx = outputs.logits.argmax(-1).item()

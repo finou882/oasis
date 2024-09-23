@@ -1,3 +1,54 @@
+from pip._internal import main as _main
+import importlib
+
+def _import(name, module, ver=None):
+    try:
+        globals()[name] = importlib.import_module(module)
+    except ImportError:
+        try:
+            if ver is None:
+                _main(['install', module])
+            else:
+                _main(['install', '{}=={}'.format(module, ver)])
+            globals()[name] = importlib.import_module(module)
+        except:
+            print("can't import: {}".format(module))
+
+_import('pd','transformers', '4.44.2')
+print(pd)
+
+def _import(name, module, ver=None):
+    try:
+        globals()[name] = importlib.import_module(module)
+    except ImportError:
+        try:
+            if ver is None:
+                _main(['install', module])
+            else:
+                _main(['install', '{}=={}'.format(module, ver)])
+            globals()[name] = importlib.import_module(module)
+        except:
+            print("can't import: {}".format(module))
+
+_import('pd','datasets', '3.0.0')
+print(pd)
+
+def _import(name, module, ver=None):
+    try:
+        globals()[name] = importlib.import_module(module)
+    except ImportError:
+        try:
+            if ver is None:
+                _main(['install', module])
+            else:
+                _main(['install', '{}=={}'.format(module, ver)])
+            globals()[name] = importlib.import_module(module)
+        except:
+            print("can't import: {}".format(module))
+
+_import('pd','torch', '2.4.1')
+print(pd)
+
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
 import torch

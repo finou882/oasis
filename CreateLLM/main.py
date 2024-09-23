@@ -1,53 +1,67 @@
 from pip._internal import main as _main
 import importlib
 
-def _import(name, module, ver=None):
-    try:
-        globals()[name] = importlib.import_module(module)
-    except ImportError:
-        try:
-            if ver is None:
-                _main(['install', module])
-            else:
-                _main(['install', '{}=={}'.format(module, ver)])
-            globals()[name] = importlib.import_module(module)
-        except:
-            print("can't import: {}".format(module))
 
-_import('pd','transformers', '4.44.2')
-print(pd)
+name: str = "transformers"
+version: str = "4.44.2"
+try:
+    importlib.import_module(name)
+except ImportError:
+    cli_main(
+        [
+            "install",
+            f"{name}=={version}",
+            "-q",
+            "--disable-pip-version-check",
+            "--no-python-version-warning",
+            "--no-warn-script-location",
+            "--no-warn-conflicts",
+            "--root-user-action",
+            "ignore",
+        ]
+    )
 
-def _import(name, module, ver=None):
-    try:
-        globals()[name] = importlib.import_module(module)
-    except ImportError:
-        try:
-            if ver is None:
-                _main(['install', module])
-            else:
-                _main(['install', '{}=={}'.format(module, ver)])
-            globals()[name] = importlib.import_module(module)
-        except:
-            print("can't import: {}".format(module))
 
-_import('pd','datasets', '3.0.0')
-print(pd)
+name: str = "datasets"
+version: str = "3.0.0"
+try:
+    importlib.import_module(name)
+except ImportError:
+    cli_main(
+        [
+            "install",
+            f"{name}=={version}",
+            "-q",
+            "--disable-pip-version-check",
+            "--no-python-version-warning",
+            "--no-warn-script-location",
+            "--no-warn-conflicts",
+            "--root-user-action",
+            "ignore",
+        ]
+    )
 
-def _import(name, module, ver=None):
-    try:
-        globals()[name] = importlib.import_module(module)
-    except ImportError:
-        try:
-            if ver is None:
-                _main(['install', module])
-            else:
-                _main(['install', '{}=={}'.format(module, ver)])
-            globals()[name] = importlib.import_module(module)
-        except:
-            print("can't import: {}".format(module))
+    
+name: str = "torch"
+version: str = "2.4.1"
+try:
+    importlib.import_module(name)
+except ImportError:
+    cli_main(
+        [
+            "install",
+            f"{name}=={version}",
+            "-q",
+            "--disable-pip-version-check",
+            "--no-python-version-warning",
+            "--no-warn-script-location",
+            "--no-warn-conflicts",
+            "--root-user-action",
+            "ignore",
+        ]
+    )
 
-_import('pd','torch', '2.4.1')
-print(pd)
+
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset

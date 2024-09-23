@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 tokenizer = AutoTokenizer.from_pretrained("stockmark/stockmark-100b")
 model = AutoModelForCausalLM.from_pretrained("stockmark/stockmark-100b", device_map="auto", torch_dtype=torch.bfloat16)
 
-input_ids = tokenizer("生成AIとは？", return_tensors="pt").input_ids.to(model.device)
+input_ids = tokenizer("What is Geneleting AI", return_tensors="pt").input_ids.to(model.device)
 with torch.inference_mode():
     tokens = model.generate(
         input_ids,

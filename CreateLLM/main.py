@@ -15,7 +15,7 @@ tokenized_dataset = dataset.map(tokenize_function, batched=True)
 train_dataset = tokenized_dataset["train"]
 test_dataset = tokenized_dataset["test"]
 
-model = AutoModelForCausalLM.from_pretrained("stockmark/stockmark-100b", device_map="auto", torch_dtype=torch.bfloat16)
+model = AutoModelForSequenceClassification.from_pretrained("stockmark/stockmark-100b", num_labels=4)
 
 training_args = TrainingArguments("test_trainer", evaluation_strategy="epoch")
 trainer = Trainer(

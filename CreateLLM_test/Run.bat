@@ -1,3 +1,4 @@
+@echo off
 start "" "C:\Users\finou\AppData\Local\Programs\VOICEVOX\vv-engine\run.exe"
 python3 -m pip install --upgrade pip
 python3 -m pip install git+https://github.com/huggingface/accelerate

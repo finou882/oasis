@@ -39,6 +39,6 @@ We currently have one confirmed issue that has been resolved on our side, please
 
 3. When Run.bat is executed, the model will be downloaded from Hangface and inference will be executed.
 
-3.Your request will be sent to VOICEVOX and you will speak. (Not implemented)
+3. Your request will be sent to VOICEVOX and you will speak. (Not implemented)
 
 

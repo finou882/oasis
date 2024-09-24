@@ -1,6 +1,9 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
 import torch
+import requests
+import json
+import pyaudio
 
 datasets = load_dataset("oshizo/japanese-wikipedia-paragraphs")
 
@@ -10,6 +13,7 @@ def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True)
 
 tokenized_dataset = datasets.map(tokenize_function, batched=True)
+
 
 train_dataset = tokenized_dataset["train"]
 test_dataset = tokenized_dataset["test"]

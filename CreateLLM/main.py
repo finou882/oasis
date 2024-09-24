@@ -2,20 +2,19 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trai
 from datasets import load_dataset
 import torch
 
-dataset = load_dataset("izumi-lab/llm-japanese-dataset", revision="main")
-dataset = load_dataset("izumi-lab/llm-japanese-dataset", revision="a.b.c") # for specific version
+datasets = load_dataset("oshizo/japanese-wikipedia-paragraphs")
 
-tokenizer = AutoTokenizer.from_pretrained("stockmark/stockmark-100b")
+tokenizer = AutoTokenizer.from_pretrained("rinna/youri-7b-chat")
 
 def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True)
 
-tokenized_dataset = dataset.map(tokenize_function, batched=True)
+tokenized_dataset = datasets.map(tokenize_function, batched=True)
 
 train_dataset = tokenized_dataset["train"]
 test_dataset = tokenized_dataset["test"]
 
-model = AutoModelForSequenceClassification.from_pretrained("stockmark/stockmark-100b", num_labels=4)
+model = AutoModelForCausalLM.from_pretrained("rinna/youri-7b-chat")
 
 training_args = TrainingArguments("test_trainer", evaluation_strategy="epoch")
 trainer = Trainer(

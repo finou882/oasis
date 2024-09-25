@@ -1,4 +1,3 @@
-@echo off
 start "" "C:\Users\finou\AppData\Local\Programs\VOICEVOX\vv-engine\run.exe"
 python
 pip install --upgrade pip
